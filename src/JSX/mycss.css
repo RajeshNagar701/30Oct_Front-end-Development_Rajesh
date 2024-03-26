@@ -1,0 +1,14 @@
+.mybox{
+    width: 200px;
+    height: 200px;
+    background-color: blueviolet;
+}
+
+
+
+.mybox2{
+    text-decoration: double;
+    text-align: center;
+    color: aqua;
+    background-color: blue;
+}
