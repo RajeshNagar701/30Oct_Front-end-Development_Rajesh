@@ -10,6 +10,8 @@ import Func_props from './Props/Func/Func_props'
 import Class_props from './Props/Class/Class_props'
 import Func_state from './State/Func/Func_state'
 import Class_state from './State/Class/Class_state'
+import Home from './Routing/Pages/Home'
+import App_Routing from './Routing/App_Routing'
 
 function App() {
   return (
@@ -37,7 +39,11 @@ function App() {
 
             //state
             //<Func_state/>
-            <Class_state/>
+            //<Class_state/>
+           
+            // Routing
+            <App_Routing/>
+
         }
         
     </div>
