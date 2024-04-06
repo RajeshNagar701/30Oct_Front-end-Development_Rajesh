@@ -12,10 +12,13 @@ import Func_state from './State/Func/Func_state'
 import Class_state from './State/Class/Class_state'
 import Home from './Routing/Pages/Home'
 import App_Routing from './Routing/App_Routing'
+import Basic_boostrap from './Bootstrap/Basic_boostrap'
+import React_boostarp from './Bootstrap/React_boostarp'
+import MUI from './MUI/MUI'
 
 function App() {
   return (
-    <div>
+    <div className='container mt-5'>
 
         {            
             // <Demo/>
@@ -42,8 +45,13 @@ function App() {
             //<Class_state/>
            
             // Routing
-            <App_Routing/>
+            //<App_Routing/>
 
+            // bootstrap
+            //<Basic_boostrap/>
+            //<React_boostarp/>
+
+            <MUI/>
         }
         
     </div>
