@@ -62,8 +62,6 @@ function MUI() {
 
             <hr />
 
-
-          
                 <Grid container>
                     <Grid item xs={8}>
                         <Item>xs=8</Item>

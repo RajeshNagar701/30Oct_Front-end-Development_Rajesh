@@ -15,6 +15,7 @@ import App_Routing from './Routing/App_Routing'
 import Basic_boostrap from './Bootstrap/Basic_boostrap'
 import React_boostarp from './Bootstrap/React_boostarp'
 import MUI from './MUI/MUI'
+import Styled_component from './styled_component/Styled_component'
 
 function App() {
   return (
@@ -51,7 +52,8 @@ function App() {
             //<Basic_boostrap/>
             //<React_boostarp/>
 
-            <MUI/>
+            //<MUI/>
+            <Styled_component/>
         }
         
     </div>
