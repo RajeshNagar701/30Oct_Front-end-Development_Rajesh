@@ -9,9 +9,11 @@ CSS Modules are convenient for components that are placed in separate files.
 Create the CSS module with the .module.css extension, 
 
 example: mystyle.module.css.
+import '/style.css'
+class="hello"
 
-import st from './mystyle.module.css'
-
+import A from './mystyle.module.css'
+class={A.hello}
 
 */
 

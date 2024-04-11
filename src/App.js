@@ -16,6 +16,8 @@ import Basic_boostrap from './Bootstrap/Basic_boostrap'
 import React_boostarp from './Bootstrap/React_boostarp'
 import MUI from './MUI/MUI'
 import Styled_component from './styled_component/Styled_component'
+import Class_Life from './Lifecycle/class/Class_Life'
+import Func_Life from './Lifecycle/Function/Func_Life'
 
 function App() {
   return (
@@ -53,7 +55,12 @@ function App() {
             //<React_boostarp/>
 
             //<MUI/>
-            <Styled_component/>
+            //<Styled_component/>
+
+
+            // Lifecycle
+            //<Class_Life/>
+            <Func_Life/>
         }
         
     </div>

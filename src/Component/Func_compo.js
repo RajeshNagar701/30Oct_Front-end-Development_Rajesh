@@ -8,7 +8,8 @@ They serve the same purpose as JavaScript functions, but work in isolation and r
 1)Class Component
 
 A class component must include the extends React.Component statement. 
-This statement creates an inheritance to React.Component, and gives your component access to React.Component's functions.
+This statement creates an inheritance to React.Component, 
+and gives your component access to React.Component's functions.
 
 class Car extends React.Component {
   render() {

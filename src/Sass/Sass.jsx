@@ -12,8 +12,14 @@ Sass is free to download and use
 Stylesheets are getting larger, more complex, and harder to maintain. 
 This is where a CSS pre-processor can help.
 
-Sass lets you use features that do not exist in CSS, like variables, nested rules, 
-mixins, imports, inheritance, built-in functions, and other stuff.
+Sass lets you use features that do not exist in CSS, like 
+variables, 
+nested rules, 
+mixins, 
+imports, 
+inheritance, 
+built-in functions, 
+and other stuff.
 
 npm i sass
 
