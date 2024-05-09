@@ -1,0 +1,91 @@
+{
+    "user": [
+        {
+            "id": "1",
+            "name": "demo",
+            "email": "demo@gmail.com",
+            "password": "123456",
+            "mobile": "9722041171",
+            "img": "falana.jpg",
+            "status": "Unblock"
+        },
+        {
+            "id": "1712205193181",
+            "name": "krishna",
+            "email": "ksrishna@gmail.com",
+            "password": "1234",
+            "mobile": "1234567891",
+            "img": "https://img-getpocket.cdn.mozilla.net/296x148/filters:format(jpeg):quality(60):no_upscale():strip_exif()/https%3A%2F%2Fs3.us-east-1.amazonaws.com%2Fpocket-curatedcorpusapi-prod-images%2Fc97878cd-dfaa-4987-9388-95b0e2bfae7d.jpeg",
+            "status": "Unblock"
+        }
+       
+    ],
+    "categories": [
+            {
+                "id": "1",
+                "cate_name": "Skin",
+                "cate_img": ""
+            },
+            {
+                "id": "2",
+                "cate_name": "Hair",
+                "cate_img": ""
+            }
+       
+    ],
+	"blog": [
+            {
+                "id": "1",
+                "title": "Skin Seminar",
+				"description": "Skin Seminar",
+                "blog_img": ""
+            }
+    ],
+
+    "services": [
+        {
+            "id": "1",
+            "cate_id":"1",
+            "service_name": "Hidra Facial",
+            "desc": "Hidra Facial",
+            "price": "999",
+            "ser_img": ""
+        },
+		 {
+            "id": "2",
+            "cate_id":"2",
+            "service_name": "Hair PRP Treatment",
+            "desc": "Hair PRP Treatment",
+            "price": "999",
+            "ser_img": ""
+        }
+       
+    ],
+
+
+
+    "contacts": [
+        {
+            "id": "1712203580572",
+            "name": "raj nagar",
+            "email": "pavan@gmail.com",
+            "comment": "asdasd"
+        },
+        {
+            "id": "1712203811251",
+            "name": "ankita",
+            "email": "admin@gmail.com",
+            "comment": "sadsdasd"
+        }
+    ],
+
+
+    "admin": [
+        {
+            "id": "1712203811251",
+            "name": "ankita",
+            "email": "admin@gmail.com",
+            "password": "sadsdasd"
+        }
+    ]
+}

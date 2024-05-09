@@ -13,6 +13,10 @@ import Manage_contact from "./admin/pages/Manage_contact";
 import Manage_customer from "./admin/pages/Manage_customer";
 import Login from "./website/pages/Login";
 import Signup from "./website/pages/Signup";
+import About from "./website/pages/About";
+import Services from "./website/pages/Services";
+import View_service from "./website/pages/View_Service";
+import Blog from "./website/pages/Blog";
 
 
 function App() {
@@ -20,12 +24,17 @@ function App() {
    <>
    <BrowserRouter>
     <Routes>
-      {// admin roues
+      {// Websites
       }
       <Route path="/" element={<Home/>}></Route>
       <Route path="/contact" element={<Contact/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
+      <Route path="/about" element={<About/>}></Route>
+      <Route path="/services" element={<Services/>}></Route>
+      <Route path="/view_service" element={<View_service/>}></Route>
+      <Route path="/blog" element={<Blog/>}></Route>
+      
       {// admin roues
       }
 
