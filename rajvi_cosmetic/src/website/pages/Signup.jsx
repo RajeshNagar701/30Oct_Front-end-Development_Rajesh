@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../component/Footer'
 import Header2 from '../component/Header2'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function Signup() {
+
+    const [formvalue,setFormvalue]=useState({
+        name:"",
+        email:"",
+        password:"",
+        mobile:"",
+        img:""
+    })
+
+    const changeHandel=(e)=>{
+        setFormvalue({...formvalue,id:new Date().getTime().toString(),status:"Unblock",[e.target.name]:e.target.value});
+        console.log(formvalue);
+    }
+
+    const submitHandel=async(e)=>{
+       e.preventDefault();
+       const res= await axios.post(`http://localhost:3000/user`,formvalue);
+       setFormvalue({...formvalue,name:"",email:"",password:"",mobile:"",img:""}); 
+
+    }
+    
+
     return (
         <>
             <Header2 title="Signup Here"/>
+           
             {/* Contact Start */}
             < div className="container-fluid py-5" >
                 <div className="container py-5">
@@ -21,26 +45,26 @@ function Signup() {
                                 <h6 className="d-inline-block text-white text-uppercase bg-primary py-1 px-2">Signup</h6>
                                 <h1 className="mb-4">Signup Here</h1>
                                 <div id="success" />
-                                <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                                <form id="contactForm" method='post'  onSubmit={submitHandel}>
                                     <div className="form-row">
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your Name" />
+                                            <input type="text" value={formvalue.name} onChange={changeHandel} className="form-control border-0 p-4" name="name" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your Name" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="email" className="form-control border-0 p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                            <input type="email" value={formvalue.email} onChange={changeHandel} className="form-control border-0 p-4" name="email" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" id="password" placeholder="Your Password" required="required" data-validation-required-message="Please enter Password" />
+                                            <input type="text" value={formvalue.password}  onChange={changeHandel} className="form-control border-0 p-4" name="password" id="password" placeholder="Your Password" required="required" data-validation-required-message="Please enter Password" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="number" className="form-control border-0 p-4" id="mobile" placeholder="Your Mobile" required="required" data-validation-required-message="Please enter Mobile" />
+                                            <input type="number" value={formvalue.mobile} onChange={changeHandel} className="form-control border-0 p-4" name="mobile" id="mobile" placeholder="Your Mobile" required="required" data-validation-required-message="Please enter Mobile" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="url" className="form-control border-0 p-4" id="img" placeholder="Your Image" required="required" data-validation-required-message="Please enter Image URL" />
+                                            <input type="url" value={formvalue.img} onChange={changeHandel} className="form-control border-0 p-4" name="img" id="img" placeholder="Your Image" required="required" data-validation-required-message="Please enter Image URL" />
                                             <p className="help-block text-danger" />
                                         </div>
                                     </div>

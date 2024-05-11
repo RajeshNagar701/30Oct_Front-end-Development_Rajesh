@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
+import axios from 'axios';
 
 function Manage_customer() {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        fetch();
+    });
+    const fetch = async () => {
+        const res = await axios.get(`http://localhost:3000/user`);
+        console.log(res.data);
+        setData(res.data)
+    }
+
     return (
         <div>
             <AHeader title="Manage Customer"/>
@@ -29,18 +40,24 @@ function Manage_customer() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>John</td>
-                                            <td>Doe</td>
-                                            <td>john@example.com</td>
-                                            <td>John</td>
-                                            <td>Doe</td>
-                                            <td>john@example.com</td>
-                                            <td>
-                                                <button className='btn btn-info mr-2'>Edit</button>
-                                                <button className='btn btn-danger'>Delete</button>
-                                            </td>
-                                        </tr>
+                                    {
+                                            data && data.map((value, index, arr) => {
+                                                return (
+                                                    <tr>
+                                                        <td>{value.id}</td>
+                                                        <td>{value.name}</td>
+                                                        <td>{value.email}</td>
+                                                        <td>{value.passord}</td>
+                                                        <td>{value.mobile}</td>
+                                                        <td><img src={value.img} width="50px"/></td>
+                                                        <td>
+                                                            <button className='btn btn-info mr-2'>Edit</button>
+                                                            <button className='btn btn-danger'>Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
                                        
                                     </tbody>
                                 </table>
