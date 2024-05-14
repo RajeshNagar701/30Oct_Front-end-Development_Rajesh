@@ -13,7 +13,9 @@ function Manage_customer() {
         console.log(res.data);
         setData(res.data)
     }
-
+    const deleteHandel = async (id) => {
+        const res = await axios.delete(`http://localhost:3000/user/${id}`);
+    }
     return (
         <div>
             <AHeader title="Manage Customer"/>
@@ -52,7 +54,7 @@ function Manage_customer() {
                                                         <td><img src={value.img} width="50px"/></td>
                                                         <td>
                                                             <button className='btn btn-info mr-2'>Edit</button>
-                                                            <button className='btn btn-danger'>Delete</button>
+                                                            <button className='btn btn-danger' onClick={()=>deleteHandel(value.id)}>Delete</button>
                                                         </td>
                                                     </tr>
                                                 )

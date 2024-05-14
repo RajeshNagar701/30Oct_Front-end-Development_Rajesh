@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
+import axios from 'axios'
 
 function Add_blog() {
+
+    const [formvalue,setFormvalue]=useState({
+        title:"",
+        description:"",
+        blog_img:""
+    })
+
+    const changeHandel=(e)=>{
+        setFormvalue({...formvalue,id:new Date().getTime().toString(),[e.target.name]:e.target.value});
+        console.log(formvalue);
+    }
+
+    const submitHandel=async(e)=>{
+       e.preventDefault();
+       const res= await axios.post(`http://localhost:3000/blog`,formvalue);
+       setFormvalue({...formvalue,title:"",description:"",blog_img:""}); 
+    }
+
     return (
         <div>
             <AHeader title="Add Blog"/>
@@ -15,20 +34,20 @@ function Add_blog() {
                                 <h6 className="d-inline-block text-white text-uppercase bg-primary py-1 px-2"><td>Blog</td></h6>
                                 <h1 className="mb-4">Add Blog</h1>
                                 <div id="success" />
-                                <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                                <form method="post" name="sentMessage" onSubmit={submitHandel}>
                                     <div className="form-row">
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" name="title" placeholder="Blog Title" required="required" data-validation-required-message="Please enter your name" />
+                                            <input type="text" className="form-control border-0 p-4" value={formvalue.title} onChange={changeHandel}  name="title" placeholder="Blog Title" required="required" data-validation-required-message="Please enter your name" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="url" className="form-control border-0 p-4" name="blog_img" placeholder="Blog Image" required="required" data-validation-required-message="Please enter your email" />
+                                            <input type="url" className="form-control border-0 p-4" value={formvalue.blog_img} onChange={changeHandel} name="blog_img" placeholder="Blog Image" required="required" data-validation-required-message="Please enter your email" />
                                             <p className="help-block text-danger" />
                                         </div>
                                     </div>
                                    
                                     <div className="control-group">
-                                        <textarea className="form-control border-0 py-3 px-4" rows={3} name="message" placeholder="Blog Description" required="required" data-validation-required-message="Please enter your message" defaultValue={""} />
+                                        <textarea className="form-control border-0 py-3 px-4" rows={3} value={formvalue.description} onChange={changeHandel} name="description" placeholder="Blog Description" required="required" data-validation-required-message="Please enter your message" defaultValue={""} />
                                         <p className="help-block text-danger" />
                                     </div>
                                     <div>

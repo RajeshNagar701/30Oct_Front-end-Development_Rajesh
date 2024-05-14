@@ -14,6 +14,10 @@ function Manage_services() {
         setData(res.data)
     }
 
+    const deleteHandel = async (id) => {
+        const res = await axios.delete(`http://localhost:3000/services/${id}`);
+    }
+
     return (
         <div>
             <AHeader title="Manage Services" />
@@ -52,7 +56,7 @@ function Manage_services() {
                                                         <td><img src={value.ser_img} alt="" width="50px" /></td>
                                                         <td>
                                                             <button className='btn btn-info mr-2'>Edit</button>
-                                                            <button className='btn btn-danger'>Delete</button>
+                                                            <button className='btn btn-danger' onClick={()=>deleteHandel(value.id)}>Delete</button>
                                                         </td>
                                                     </tr>
                                                 )

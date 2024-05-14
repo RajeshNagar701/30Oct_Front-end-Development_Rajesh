@@ -1,48 +1,87 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
+import axios from 'axios';
 
 function Add_services() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch();
+    });
+    const fetch = async () => {
+        const res = await axios.get(`http://localhost:3000/categories`);
+        console.log(res.data);
+        setData(res.data)
+    }
+
+
+    const [formvalue,setFormvalue]=useState({
+        cate_id:"",
+        service_name:"",
+        desc:"",
+        price:"",
+        ser_img:""
+    })
+
+    const changeHandel=(e)=>{
+        setFormvalue({...formvalue,id:new Date().getTime().toString(),[e.target.name]:e.target.value});
+        console.log(formvalue);
+    }
+
+    const submitHandel=async(e)=>{
+       e.preventDefault();
+       const res= await axios.post(`http://localhost:3000/services`,formvalue);
+       setFormvalue({...formvalue,cate_id:"",service_name:"",desc:"",price:"",ser_img:""}); 
+    }
+
     return (
         <div>
-            <AHeader title="Add Services"/>
+            <AHeader title="Add Services" />
             < div className="container-fluid" >
                 <div className="container">
                     <div className="row">
-                        
+
                         <div className="col-lg-12">
                             <div className="bg-light  p-lg-5 ">
                                 <h6 className="d-inline-block text-white text-uppercase bg-primary py-1 px-2">Services</h6>
                                 <h1 className="mb-4">Add Services</h1>
                                 <div id="success" />
-                                <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                                <form method='post'  onSubmit={submitHandel} name="sentMessage" >
                                     <div className="form-row">
                                         <div className="col-sm-12 control-group">
-                                            <select className="form-control border-0" name="cate_id" placeholder="Services Name" required="required" data-validation-required-message="Please enter Service name">
+                                            <select className="form-control border-0"  value={formvalue.cate_id} onChange={changeHandel} name="cate_id" placeholder="Services Name" >
                                                 <option value="" selected>-------- Select Categories ---------</option>
-                                            </select>    
+                                                {
+                                                    data && data.map((value, index, arr) => {
+                                                        return (
+                                                           <option value={value.id}>{value.cate_name}</option>
+                                                        )
+                                                    })
+                                                }
+
+
+                                            </select>
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" name="name" placeholder="Services Name" required="required" data-validation-required-message="Please enter Service name" />
+                                            <input type="text" className="form-control border-0 p-4" value={formvalue.service_name} onChange={changeHandel}  name="service_name" placeholder="Services Name" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="url" className="form-control border-0 p-4" name="ser_img" placeholder="Service Image" required="required" data-validation-required-message="Please Enter Service Image" />
+                                            <input type="url" className="form-control border-0 p-4" value={formvalue.ser_img} onChange={changeHandel}  name="ser_img" placeholder="Service Image" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="number" className="form-control border-0 p-4" name="main_price" placeholder="Main Price" required="required" data-validation-required-message="Please Main Price" />
+                                            <input type="number" className="form-control border-0 p-4" value={formvalue.price} onChange={changeHandel} name="price" placeholder="Main Price"/>
                                             <p className="help-block text-danger" />
                                         </div>
-                                        <div className="col-sm-12 control-group">
-                                            <input type="number" className="form-control border-0 p-4" name="dis_price" placeholder="Discounted Price" required="required" data-validation-required-message="Please Discounted Price" />
-                                            <p className="help-block text-danger" />
-                                        </div>
+                                        
                                     </div>
-                                
+
                                     <div className="control-group">
-                                        <textarea className="form-control border-0 py-3 px-4" name="desc" rows={3} id="message" placeholder="Service Description" required="required" data-validation-required-message="Please enter Service Description" defaultValue={""} />
+                                        <textarea className="form-control border-0 py-3 px-4" value={formvalue.desc} onChange={changeHandel} name="desc" rows={3} id="message" placeholder="Service Description" defaultValue={""} />
                                         <p className="help-block text-danger" />
                                     </div>
                                     <div>

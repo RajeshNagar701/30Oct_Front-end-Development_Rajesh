@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
+import axios from 'axios'
 
 function Add_categories() {
+    const [formvalue,setFormvalue]=useState({
+        cate_name:"",
+        cate_img:"",
+    })
+
+    const changeHandel=(e)=>{
+        setFormvalue({...formvalue,id:new Date().getTime().toString(),[e.target.name]:e.target.value});
+        console.log(formvalue);
+    }
+
+    const submitHandel=async(e)=>{
+       e.preventDefault();
+       const res= await axios.post(`http://localhost:3000/categories`,formvalue);
+       setFormvalue({...formvalue,cate_name:"",cate_img:""}); 
+    }
     return (
         <div>
             <AHeader title="Add Categories"/>
@@ -15,14 +31,14 @@ function Add_categories() {
                                 <h6 className="d-inline-block text-white text-uppercase bg-primary py-1 px-2">Categories</h6>
                                 <h1 className="mb-4">Add Categories</h1>
                                 <div id="success" />
-                                <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                                <form method='post' name="sentMessage" id="contactForm" onSubmit={submitHandel}>
                                     <div className="form-row">
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" id="name" placeholder="Categories Name" required="required" data-validation-required-message="Please enter Categories name" />
+                                            <input type="text" value={formvalue.cate_name} onChange={changeHandel} name="cate_name" className="form-control border-0 p-4" id="name" placeholder="Categories Name" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="url" className="form-control border-0 p-4" id="cate_img" placeholder="Categories Image" required="required" data-validation-required-message="Please enter Categories Images" />
+                                            <input type="url" value={formvalue.cate_img} onChange={changeHandel} name="cate_img" className="form-control border-0 p-4" id="cate_img" placeholder="Categories Image"/>
                                             <p className="help-block text-danger" />
                                         </div>
                                     </div>
