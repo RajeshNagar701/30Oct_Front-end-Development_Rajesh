@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 function Manage_services() {
 
     const [data, setData] = useState([]);
@@ -16,6 +18,8 @@ function Manage_services() {
 
     const deleteHandel = async (id) => {
         const res = await axios.delete(`http://localhost:3000/services/${id}`);
+        toast.success('Service Delete Success');
+        return false;
     }
 
     return (

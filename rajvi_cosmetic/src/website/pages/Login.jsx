@@ -1,12 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../component/Footer'
 import Header2 from '../component/Header2'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 function Login() {
+    const [formvalue, setFormvalue] = useState({
+        email: "",
+        password: ""
+    })
+
+    const changeHandel = (e) => {
+        setFormvalue({ ...formvalue, [e.target.name]: e.target.value });
+        console.log(formvalue);
+    }
+
+    function validation() {
+
+        var result = true;
+        if (formvalue.email == "") {
+            toast.error('email Field is required !');
+            result = false;
+            return false;
+        }
+        if (formvalue.password == "") {
+            toast.error('password Field is required !');
+            result = false;
+            return false;
+        }
+
+        return result;
+    }
+
+
+    const submitHandel = async (e) => {
+        e.preventDefault();
+        if (validation()) {
+            const res = await axios.get(`http://localhost:3000/user?email=${formvalue.email}`);
+            if (res.data.length > 0) {
+                if (res.data[0].password == formvalue.password) {
+                    if (res.data[0].status == "Unblock") {
+                        toast.success("Login Suucees!");
+                    }
+                    else {
+                        toast.error("Account Blocked!");
+                    }
+                }
+                else {
+                    toast.error("Password incorrect !");
+                }
+            }
+            else {
+                toast.error("Email does not exist !");
+            }
+        }
+    }
     return (
         <>
-            <Header2 title="Login Here"/>
+            <Header2 title="Login Here" />
             {/* Contact Start */}
             < div className="container-fluid py-5" >
                 <div className="container py-5">
@@ -21,22 +73,23 @@ function Login() {
                                 <h6 className="d-inline-block text-white text-uppercase bg-primary py-1 px-2">Login</h6>
                                 <h1 className="mb-4">Login Here</h1>
                                 <div id="success" />
-                                <form name="sentMessage" id="contactForm" noValidate="novalidate">
+                                <form id="contactForm" method='post' onSubmit={submitHandel}>
                                     <div className="form-row">
-                                        
+
                                         <div className="col-sm-12 control-group">
-                                            <input type="email" className="form-control border-0 p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                            <input type="email" value={formvalue.email} onChange={changeHandel} className="form-control border-0 p-4" name="email" id="email" placeholder="Your Email" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" id="password" placeholder="Your Password" required="required" data-validation-required-message="Please enter Password" />
+                                            <input type="text" value={formvalue.password} onChange={changeHandel} className="form-control border-0 p-4" name="password" id="password" placeholder="Your Password" />
                                             <p className="help-block text-danger" />
                                         </div>
+
                                     </div>
-                                    
+
                                     <div>
-                                        <button className="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
-                                        <Link to='/signup' className='float-right'>If you not registered then Signup Here</Link>
+                                        <button className="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Signup</button>
+                                        <Link to='/signup' className='float-right'>If you not  registered then Signup Here</Link>
                                     </div>
                                 </form>
                             </div>

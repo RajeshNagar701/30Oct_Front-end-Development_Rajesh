@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 function Add_services() {
 
@@ -17,23 +19,58 @@ function Add_services() {
     }
 
 
-    const [formvalue,setFormvalue]=useState({
-        cate_id:"",
-        service_name:"",
-        desc:"",
-        price:"",
-        ser_img:""
+    const [formvalue, setFormvalue] = useState({
+        cate_id: "",
+        service_name: "",
+        desc: "",
+        price: "",
+        ser_img: ""
     })
 
-    const changeHandel=(e)=>{
-        setFormvalue({...formvalue,id:new Date().getTime().toString(),[e.target.name]:e.target.value});
+    const changeHandel = (e) => {
+        setFormvalue({ ...formvalue, id: new Date().getTime().toString(), [e.target.name]: e.target.value });
         console.log(formvalue);
     }
 
-    const submitHandel=async(e)=>{
-       e.preventDefault();
-       const res= await axios.post(`http://localhost:3000/services`,formvalue);
-       setFormvalue({...formvalue,cate_id:"",service_name:"",desc:"",price:"",ser_img:""}); 
+    function validation() {
+
+        var result = true;
+        if (formvalue.cate_id == "") {
+            toast.error('Categories Field is required !');
+            result = false;
+            return false;
+        }
+        if (formvalue.service_name == "") {
+            toast.error('Sevice Name Field is required !');
+            result = false;
+            return false;
+        }
+        if (formvalue.desc == "") {
+            toast.error('Description Field is required !');
+            result = false;
+            return false;
+        }
+        if (formvalue.price == "") {
+            toast.error('Price Field is required !');
+            result = false;
+            return false;
+        }
+        if (formvalue.ser_img == "") {
+            toast.error('Service Image Field is required !');
+            result = false;
+            return false;
+        }
+        return result;
+    }
+
+    const submitHandel = async (e) => {
+        e.preventDefault();
+        if (validation()) {
+            const res = await axios.post(`http://localhost:3000/services`, formvalue);
+            setFormvalue({ ...formvalue, cate_id: "", service_name: "", desc: "", price: "", ser_img: "" });
+            toast.success('Services Add Success');
+            return false;
+        }
     }
 
     return (
@@ -48,15 +85,15 @@ function Add_services() {
                                 <h6 className="d-inline-block text-white text-uppercase bg-primary py-1 px-2">Services</h6>
                                 <h1 className="mb-4">Add Services</h1>
                                 <div id="success" />
-                                <form method='post'  onSubmit={submitHandel} name="sentMessage" >
+                                <form method='post' onSubmit={submitHandel} name="sentMessage" >
                                     <div className="form-row">
                                         <div className="col-sm-12 control-group">
-                                            <select className="form-control border-0"  value={formvalue.cate_id} onChange={changeHandel} name="cate_id" placeholder="Services Name" >
+                                            <select className="form-control border-0" value={formvalue.cate_id} onChange={changeHandel} name="cate_id" placeholder="Services Name" >
                                                 <option value="" selected>-------- Select Categories ---------</option>
                                                 {
                                                     data && data.map((value, index, arr) => {
                                                         return (
-                                                           <option value={value.id}>{value.cate_name}</option>
+                                                            <option value={value.id}>{value.cate_name}</option>
                                                         )
                                                     })
                                                 }
@@ -66,18 +103,18 @@ function Add_services() {
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="text" className="form-control border-0 p-4" value={formvalue.service_name} onChange={changeHandel}  name="service_name" placeholder="Services Name" />
+                                            <input type="text" className="form-control border-0 p-4" value={formvalue.service_name} onChange={changeHandel} name="service_name" placeholder="Services Name" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="url" className="form-control border-0 p-4" value={formvalue.ser_img} onChange={changeHandel}  name="ser_img" placeholder="Service Image" />
+                                            <input type="url" className="form-control border-0 p-4" value={formvalue.ser_img} onChange={changeHandel} name="ser_img" placeholder="Service Image" />
                                             <p className="help-block text-danger" />
                                         </div>
                                         <div className="col-sm-12 control-group">
-                                            <input type="number" className="form-control border-0 p-4" value={formvalue.price} onChange={changeHandel} name="price" placeholder="Main Price"/>
+                                            <input type="number" className="form-control border-0 p-4" value={formvalue.price} onChange={changeHandel} name="price" placeholder="Main Price" />
                                             <p className="help-block text-danger" />
                                         </div>
-                                        
+
                                     </div>
 
                                     <div className="control-group">

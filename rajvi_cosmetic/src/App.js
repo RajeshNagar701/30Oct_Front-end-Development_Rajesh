@@ -18,11 +18,15 @@ import Services from "./website/pages/Services";
 import View_service from "./website/pages/View_Service";
 import Blog from "./website/pages/Blog";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
    <>
    <BrowserRouter>
+    <ToastContainer></ToastContainer>
     <Routes>
       {// Websites
       }
