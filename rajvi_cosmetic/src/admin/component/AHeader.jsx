@@ -1,7 +1,17 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function AHeader({title}) {
+    
+    const redirect=useNavigate();
+    
+    const adminlogout=()=>{
+        localStorage.removeItem('aid');
+        localStorage.removeItem('aname');
+        toast.success('Logout Success');
+        redirect('/admin-login');
+    }
     return (
         <div>
             <div className="container-fluid bg-light d-none d-lg-block">
@@ -75,7 +85,7 @@ function AHeader({title}) {
                             <NavLink to="/manage_customer" className="nav-item nav-link">Customer</NavLink>
                             
                         </div>
-                        <a href className="btn btn-primary d-none d-lg-block">Logout</a>
+                        <a to="javascript:void(0)" onClick={adminlogout} className="btn btn-primary d-none d-lg-block">Logout</a>
                     </div>
                 </nav>
             </div>

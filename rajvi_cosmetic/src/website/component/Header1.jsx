@@ -1,8 +1,18 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function Header1() {
+
+    const redirect=useNavigate();
     
+    const userlogout=()=>{
+        localStorage.removeItem('uid');
+        localStorage.removeItem('uname');
+        toast.success('Logout Success');
+        redirect('/');
+    }
+
     return (
         <div>
             <div className="container-fluid bg-light d-none d-lg-block">
@@ -49,7 +59,7 @@ function Header1() {
                         <div className="navbar-nav m-auto py-0">
                             <NavLink to="/" className="nav-item nav-link">Home</NavLink>
                             <NavLink to="/about" className="nav-item nav-link">About</NavLink>
-                          
+
                             <div className="nav-item dropdown">
                                 <NavLink to="/services" className="nav-link dropdown-toggle" data-toggle="dropdown">Services</NavLink>
                                 <div className="dropdown-menu rounded-0 m-0">
@@ -59,7 +69,22 @@ function Header1() {
                             <NavLink to="/blog" className="nav-item nav-link">Blog</NavLink>
                             <NavLink to="/contact" className="nav-item nav-link">Contact</NavLink>
                         </div>
-                        <NavLink to="/login" className="btn btn-primary d-none d-lg-block">Login</NavLink>
+                        {(
+                            () => {
+                                if (localStorage.getItem('uid')) {
+                                    return (
+                                        <a to="javascript:void(0)" onClick={userlogout} className="btn btn-primary d-none d-lg-block">Logout</a>
+                                    )
+                                }
+                                else {
+                                    return (
+                                        <NavLink to="/login" className="btn btn-primary d-none d-lg-block">Login</NavLink>
+                                    )
+                                }
+                            }
+
+                        )()}
+
                     </div>
                 </nav>
             </div>

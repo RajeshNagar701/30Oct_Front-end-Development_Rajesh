@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import Footer from '../component/Footer'
 import Header2 from '../component/Header2'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
 function Login() {
+
+    const redirect=useNavigate();
     const [formvalue, setFormvalue] = useState({
         email: "",
         password: ""
@@ -41,7 +43,12 @@ function Login() {
             if (res.data.length > 0) {
                 if (res.data[0].password == formvalue.password) {
                     if (res.data[0].status == "Unblock") {
+
+                        // session create
+                        localStorage.setItem('uid',res.data[0].id);
+                        localStorage.setItem('uname',res.data[0].name);    
                         toast.success("Login Suucees!");
+                        redirect('/');
                     }
                     else {
                         toast.error("Account Blocked!");
