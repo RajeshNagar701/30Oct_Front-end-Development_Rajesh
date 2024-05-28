@@ -1,15 +1,6 @@
 {
   "user": [
     {
-      "id": "1",
-      "name": "demo",
-      "email": "demo@gmail.com",
-      "password": "123456",
-      "mobile": "9722041171",
-      "img": "falana.jpg",
-      "status": "Unblock"
-    },
-    {
       "id": "1712205193181",
       "name": "krishna",
       "email": "ksrishna@gmail.com",
@@ -44,14 +35,6 @@
       "mobile": "1234567891",
       "img": "https://topsint.com/topserp/images/logo-tops.png",
       "status": "Unblock"
-    },
-    {
-      "id": "d77a",
-      "name": "",
-      "email": "",
-      "password": "",
-      "mobile": "",
-      "img": ""
     }
   ],
   "categories": [

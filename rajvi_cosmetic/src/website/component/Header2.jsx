@@ -69,6 +69,16 @@ function Header2({ title }) {
                             </div>
                             <NavLink to="/blog" className="nav-item nav-link">Blog</NavLink>
                             <NavLink to="/contact" className="nav-item nav-link">Contact</NavLink>
+                            {(
+                                () => {
+                                    if (localStorage.getItem('uid')) {
+                                        return (
+                                            <NavLink to="/profile" className="nav-item nav-link">Hi .. {localStorage.getItem('uname')}</NavLink>
+                                        )
+                                    }
+                                }
+
+                            )()}
                         </div>
                         {(
                             () => {

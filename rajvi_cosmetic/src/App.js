@@ -20,6 +20,8 @@ import Blog from "./website/pages/Blog";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Profile from "./website/pages/Profile";
+import Aprofile from "./admin/pages/Aprofile";
 
 
 function App() {
@@ -38,11 +40,13 @@ function App() {
       <Route path="/services" element={<Services/>}></Route>
       <Route path="/view_service" element={<View_service/>}></Route>
       <Route path="/blog" element={<Blog/>}></Route>
+      <Route path="/profile" element={<Profile/>}></Route>
       
       {// admin roues
       }
 
       <Route path="/admin-login" element={<Admin_login/>}></Route>
+     
       <Route path="/dashboard" element={<Dashboard/>}></Route>
       <Route path="/add_categories" element={<Add_categories/>}></Route>
       <Route path="/manage_categories" element={<Manage_categories/>}></Route>
@@ -52,6 +56,7 @@ function App() {
       <Route path="/manage_blog" element={<Manage_blog/>}></Route>
       <Route path="/manage_contact" element={<Manage_contact/>}></Route>
       <Route path="/manage_customer" element={<Manage_customer/>}></Route>
+      <Route path="/aprofile" element={<Aprofile/>}></Route>
                                                                   
     </Routes>
    </BrowserRouter>

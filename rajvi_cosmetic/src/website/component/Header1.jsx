@@ -1,12 +1,12 @@
 import React from 'react'
-import { NavLink,useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 function Header1() {
 
-    const redirect=useNavigate();
-    
-    const userlogout=()=>{
+    const redirect = useNavigate();
+
+    const userlogout = () => {
         localStorage.removeItem('uid');
         localStorage.removeItem('uname');
         toast.success('Logout Success');
@@ -68,6 +68,17 @@ function Header1() {
                             </div>
                             <NavLink to="/blog" className="nav-item nav-link">Blog</NavLink>
                             <NavLink to="/contact" className="nav-item nav-link">Contact</NavLink>
+                            {(
+                                () => {
+                                    if (localStorage.getItem('uid')) {
+                                        return (
+                                            <NavLink to="/profile" className="nav-item nav-link">Hi .. {localStorage.getItem('uname')}</NavLink>
+                                        )
+                                    }
+                                }
+
+                            )()}
+
                         </div>
                         {(
                             () => {

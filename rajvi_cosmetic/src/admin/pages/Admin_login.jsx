@@ -1,10 +1,17 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 function Admin_login() {
 
     const redirect=useNavigate();
+
+    useEffect(()=>{
+        if((localStorage.getItem('aid')))
+        {
+            redirect('/dashboard');
+        }
+    })
 
     const [formvalue, setFormvalue] = useState({
         email: "",
@@ -40,13 +47,13 @@ function Admin_login() {
             const res = await axios.get(`http://localhost:3000/admin?email=${formvalue.email}`);
             if (res.data.length > 0) {
                 if (res.data[0].password == formvalue.password) {
-                        
+                      
                         // session create
                         localStorage.setItem('aid',res.data[0].id);
                         localStorage.setItem('aname',res.data[0].name);
+                    
                         redirect('/dashboard');
                         toast.success("Login Suucees!");
-                    
                 }
                 else {
                     toast.error("Password incorrect !");
@@ -144,8 +151,8 @@ function Admin_login() {
                                     </div>
 
                                     <div>
-                                        <button className="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Signup</button>
-                                        <Link to='/signup' className='float-right'>If you not  registered then Signup Here</Link>
+                                        <button className="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
+                                        
                                     </div>
                                 </form>
                             </div>

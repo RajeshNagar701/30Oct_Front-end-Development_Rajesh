@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink,useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
@@ -6,6 +6,14 @@ function AHeader({title}) {
     
     const redirect=useNavigate();
     
+    useEffect(()=>{
+        if(!(localStorage.getItem('aid')))
+        {
+            redirect('/admin-login');
+        }
+    })
+
+
     const adminlogout=()=>{
         localStorage.removeItem('aid');
         localStorage.removeItem('aname');
@@ -83,7 +91,16 @@ function AHeader({title}) {
 
                             <NavLink to="/manage_contact" className="nav-item nav-link">Contact</NavLink>
                             <NavLink to="/manage_customer" className="nav-item nav-link">Customer</NavLink>
-                            
+                            {(
+                                () => {
+                                    if (localStorage.getItem('aid')) {
+                                        return (
+                                            <NavLink to="/aprofile" className="nav-item nav-link">Hi .. {localStorage.getItem('aname')}</NavLink>
+                                        )
+                                    }
+                                }
+
+                            )()}
                         </div>
                         <a to="javascript:void(0)" onClick={adminlogout} className="btn btn-primary d-none d-lg-block">Logout</a>
                     </div>

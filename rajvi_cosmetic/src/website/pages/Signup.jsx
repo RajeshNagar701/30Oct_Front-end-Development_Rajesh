@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Footer from '../component/Footer'
 import Header2 from '../component/Header2'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
 function Signup() {
+
+    const redirect=useNavigate();
+
+    useEffect(()=>{
+        if((localStorage.getItem('uid')))
+        {
+            redirect('/');
+        }
+    })
 
     const [formvalue, setFormvalue] = useState({
         name: "",

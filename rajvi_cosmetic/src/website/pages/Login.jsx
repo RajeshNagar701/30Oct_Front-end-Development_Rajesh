@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../component/Footer'
 import Header2 from '../component/Header2'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,6 +8,14 @@ import axios from 'axios'
 function Login() {
 
     const redirect=useNavigate();
+
+    useEffect(()=>{
+        if((localStorage.getItem('uid')))
+        {
+            redirect('/');
+        }
+    })
+    
     const [formvalue, setFormvalue] = useState({
         email: "",
         password: ""
@@ -95,7 +103,7 @@ function Login() {
                                     </div>
 
                                     <div>
-                                        <button className="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Signup</button>
+                                        <button className="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Login</button>
                                         <Link to='/signup' className='float-right'>If you not  registered then Signup Here</Link>
                                     </div>
                                 </form>
