@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Footer from '../component/Footer'
 import Header2 from '../component/Header2'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Blog() {
 
@@ -15,6 +16,8 @@ function Blog() {
         console.log(res.data);
         setData(res.data)
     }
+
+    const redirect=useNavigate();
 
     return (
         <>
@@ -40,7 +43,7 @@ function Blog() {
                                                 
                                                 <h1 className="mb-4">{value.title}</h1>
                                                 <p>{value.description}</p>
-                                                <a href className="btn btn-primary mt-2">Book Now</a>
+                                                <a href="javascript:void(0)" className="btn btn-primary mt-2" onClick={()=>redirect('/single_blog/'+value.id)}>View Blog</a>
                                             </div>
                                         </div>
                                     </div>

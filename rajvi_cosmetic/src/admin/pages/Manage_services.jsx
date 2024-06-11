@@ -3,9 +3,11 @@ import AHeader from '../component/AHeader'
 import AFooter from '../component/AFooter'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Manage_services() {
 
+    const redirect=useNavigate();
     const [data, setData] = useState([]);
     useEffect(() => {
         fetch();
@@ -59,7 +61,7 @@ function Manage_services() {
                                                         <td>{value.price}</td>
                                                         <td><img src={value.ser_img} alt="" width="50px" /></td>
                                                         <td>
-                                                            <button className='btn btn-info mr-2'>Edit</button>
+                                                            <button className='btn btn-info mr-2' onClick={()=>redirect('/edit_services/'+value.id)}>Edit</button>
                                                             <button className='btn btn-danger' onClick={()=>deleteHandel(value.id)}>Delete</button>
                                                         </td>
                                                     </tr>
