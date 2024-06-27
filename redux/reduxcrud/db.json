@@ -2,7 +2,7 @@
   "user": [
     {
       "id": "1719310225074",
-      "name": "nagar raj",
+      "name": "nagar rajesh",
       "email": "nagarraj@gmail.com",
       "password": "5456464",
       "mobile": "1234567891",
@@ -10,12 +10,21 @@
       "status": "Unblock"
     },
     {
-      "id": "1719312415981",
-      "name": "nirav",
-      "email": "nirav@gmail.com",
-      "password": "456456456",
-      "mobile": "456445645646",
+      "id": "1719483477971",
+      "name": "mahesh",
+      "email": "mahesh@gmail.com",
+      "password": "54564564",
+      "mobile": "432434324",
       "img": "https://via.placeholder.com/150/b0f7cc",
+      "status": "Block"
+    },
+    {
+      "id": "1719310225076",
+      "name": "nagar nirav",
+      "email": "nagarraj@gmail.com",
+      "password": "5456464",
+      "mobile": "1234567000",
+      "img": "https://via.placeholder.com/150/56a8c2",
       "status": "Unblock"
     }
   ]

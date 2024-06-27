@@ -37,6 +37,7 @@ export const UserSlice=createSlice({
     },
     // if error then package.json "@reduxjs/toolkit": "^1.9.7", "react-redux": "^8.1.3",
     // then npm install
+    
     extraReducers:{
         [user_get.fulfilled]:(state,actions)=>{
             state.user=actions.payload;

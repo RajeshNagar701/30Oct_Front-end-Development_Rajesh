@@ -71,6 +71,25 @@ function Home() {
         }
     }
 
+    const status_user=(id)=>{
+        const edit_data=user.filter((value)=> {return value.id==id});
+        console.log(edit_data[0]);
+        if(edit_data[0].status=="Unblock")
+        {
+            dispatch(user_update({id:edit_data[0].id,status:"Block"}));
+            toast.success("User Block Success");
+        }
+        else
+        {
+            dispatch(user_update({id:id,status:"Unblock"}));
+            toast.success("User Block Success");
+        }
+       
+    }
+    
+
+
+
     return (
         <>
             <Header />
@@ -109,9 +128,10 @@ function Home() {
                                                         <img src={item.img} width="50px" alt="" />
                                                     </td>
                                                     <td align="center">
-                                                        <button className='btn btn-danger m-1' onClick={() => { dispatch(user_delete(item.id)) }}>Delete</button>
-                                                        <button className='btn btn-primary m-1' data-bs-toggle="modal" data-bs-target="#myModal" onClick={()=>editHandel(item.id)}>Edit</button>
-                                                        <button className='btn btn-success m-1'>Status</button>
+                                                        <button className='btn btn-danger m-1' onClick={() => { dispatch(user_delete(item.id)); toast.success('User Delete Success'); }}>Delete</button>
+                                                        <button className='btn btn-primary m-1' data-bs-toggle="modal" data-bs-target="#myModal" onClick={()=>editHandel(item.id)}>Model Edit</button>
+                                                        <button className='btn btn-primary m-1' onClick={()=>{return redirect('edit_user/'+item.id)}}>Page Edit</button>
+                                                        <button className='btn btn-success m-1'onClick={()=>status_user(item.id)}>{item.status}</button>
                                                     </td>
                                                 </tr>
                                             )

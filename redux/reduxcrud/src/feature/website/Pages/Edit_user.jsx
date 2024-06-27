@@ -3,28 +3,33 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import Footer from '../Component/Footer';
 import Header from '../Component/Header';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { user_update } from '../../UserSlice';
 
 
 
 
 function Edit_user() {
   
+    const dispatch=useDispatch();
     const [formvalue, setFormvalue] = useState({
         name: "",
         mobile: "",
         img: "",
     });
 
-   
+    const {user}=useSelector((state)=>state.user);
 
     useEffect(()=>{
-       
+        editdata();
     },[]);
 
-   
+    const {id}=useParams();
     const editdata=()=>{
-       
+        const edit_data=user.filter((value)=> {return value.id==id});
+        console.log(edit_data[0]);
+        setFormvalue(edit_data[0]);
     }
 
     const changeHandel = (e) => {
@@ -57,7 +62,9 @@ function Edit_user() {
     const submitHandel = async (e) => {
         e.preventDefault();
         if (vadidation()) {
-          
+            dispatch(user_update(formvalue));
+            toast.success("User Update Success");
+            return redirect('/');
         }
     }
 
