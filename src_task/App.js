@@ -25,6 +25,10 @@ import Props_drilling from './Props_drilling/Props_drilling'
 import UseContext from './useContext/UseContext'
 import UseReducer from './UseReducer/UseReducer'
 import Mytask from './UseReducer/Mytask'
+import React_memo from './React_Memo/React_memo'
+import React_useCallback from './React_useCallback/React_useCallback'
+import UseRef from './useRef/UseRef'
+import UseRef1 from './useRef/UseRef1'
 
 function App() {
   return (
@@ -77,15 +81,21 @@ function App() {
             //<Tailwind_instalation/>
 
 
-
+            // Hooks extra
+            //<React_memo/>
+            //<React_useCallback/>
+            //<UseRef/>
+            <UseRef1/>
+            
+            
             // state globaly access
             //<Props_drilling/>
             //<UseContext/>
-
+          
             // useReducer()
 
             //<UseReducer/>
-            <Mytask/>
+            //<Mytask/>
         }
         
     </div>
